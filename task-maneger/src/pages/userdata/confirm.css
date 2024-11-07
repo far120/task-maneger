@@ -1,0 +1,21 @@
+.modal{
+    background-color:rgba(255, 255, 255, 0.5); 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 400px;
+    height: 400px;
+}
+.span{
+    font-weight: bold;
+    color: red;
+    font-size: large;
+    font-size: 20px;
+}

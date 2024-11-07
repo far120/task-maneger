@@ -2,26 +2,54 @@ import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/Auth/Signup"
 import Login from "./pages/Auth/login"
 import Home from "./pages/Home/home";
-// import Completed from "./pages/Content/completed";
-// import Today from "./pages/Content/today";
+import Completed from "./pages/Home/completed";
+import Today from "./pages/Home/today";
 import Addtask from "./pages/methods/addtask";
 import UpdateTask from "./pages/methods/updatetask";
+import NotFound from "./pages/validation/NotFound";
+import Protection from "./pages/validation/protected";
+import useTokenDecoder from "./pages/jwt/useTokenDecoder";
+import Auth from "./pages/userdata/auth";
+import Profile from "./pages/userdata/profile";
+import Show from "./pages/userdata/show";
+import Update from "./pages/userdata/updates";
+import Dashboard from "./pages/userdata/dashboard";
 
 function App() {
+  const data = useTokenDecoder();
+    const role = data?.role;
   return (
+
     <>
     <Routes>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      { window.localStorage.getItem("token") ?(
+        <>
+        {window.localStorage.getItem("token") && role ==="adminserver" ?(
+          <Route path="/auth" element={<Auth />} />
+        ):
+        (
+          null
+        )  }
       <Route path="/" element={<Home />} />
       <Route path="/addtask" element={<Addtask />} />
       <Route path="/updatetask/:userid/:taskid" element={<UpdateTask />} />
-
-      {/* <Route path="/alltasks" element={<AllTasks />} />
       <Route path="/today" element={<Today />} />
-
       <Route path="/completed" element={<Completed />} />
-      </Route> */}
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/auth/:userid" element={<Show />} />
+      <Route path="/updates/:userid" element={<Update />} />
+      <Route path="/dashboard/:id" element={<Dashboard />} />
+      </>
+      ):(
+        <>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+        </>
+      )
+
+      }
     </Routes>
   
 

@@ -44,8 +44,14 @@ export default function Aside() {
         <h5>Tasks</h5>
         <ul>
           <li><Link to="/">All Tasks</Link></li>
-          <li><Link to="completed">Completed</Link></li>
-          <li><Link to="today">Today</Link></li>
+          <li><Link to="/completed">Completed</Link></li>
+          <li><Link to="/today">Today</Link></li>
+          <li><Link to="/profile">Myprofile</Link></li>
+          { role === "adminserver" ?(
+            <li><Link to="/auth">Auth</Link></li>
+          ):(
+            null
+          )}
         </ul>
       </div>
       <div className="aside-footer">

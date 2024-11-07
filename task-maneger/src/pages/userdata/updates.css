@@ -1,0 +1,66 @@
+* {
+  font-weight: bold; 
+  font-size: 18px; 
+}
+
+.back-image {
+  background-image: url("./pngtree-a-conceptual-illustration-of-web-design-development-and-seo-optimization-in-image_13584944.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  min-height: fit-content;
+  padding-bottom: 40px;
+
+}
+
+.cards {
+  position: relative;
+  top: 40px;
+  left: 550px;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  min-height: 200px;
+  border-radius: 20px;
+  padding: 20px;
+  background-color:rgba(110, 124, 150, 0.2); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.forms input {
+  width: 100%; 
+  margin-bottom: 15px; 
+  padding: 10px; 
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.forms input[type="submit"], input[type="reset"], .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover, .btn:hover {
+  background-color: #0056b3;
+}
+
+.top{
+  margin-bottom: 10px;
+  text-align: center;
+  color: black;
+  font-size: 40px;
+  font-weight: bolder;
+  font-family: 'Poppins', sans-serif;
+}
+
