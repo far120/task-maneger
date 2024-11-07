@@ -71,9 +71,9 @@ routes.get('/:userid/:taskId', async (req, res) => {
 
 
 routes.put('/:userId/:taskId', async (req, res) => {
-    const {  userId , taskId } = req.params;
+    const { userId, taskId } = req.params;
 
-
+    console.log(1)
     const schema = Joi.object({
         title: Joi.string(),
         description: Joi.string(),
@@ -84,33 +84,46 @@ routes.put('/:userId/:taskId', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     try {
-        const user = await User.findById(userId)
-        if (!user) return res.status(404).send('User not found')
+        const user = await User.findById(userId);
+        if (!user) return res.status(404).send('User not found'); 
 
-        const task = await Task.findOne({ user_id: userId });
+        const task = await Task.findOne({ user_id: userId, 'tasks._id': taskId });
         if (!task) return res.status(404).send('Task not found');
 
-  
+        console.log(2)
 
+        const ToUpdate = task.tasks.find(item => item._id.toString() === taskId);
+        if (!ToUpdate) {
+            return res.status(401).json({ message: 'You are not authorized to update this task' });
+        }
+
+       
+        ToUpdate.title = req.body.title || ToUpdate.title;
+        ToUpdate.description = req.body.description || ToUpdate.description;
+        ToUpdate.dueDate = req.body.dueDate || ToUpdate.dueDate;
+        ToUpdate.completed = req.body.completed !== undefined ? req.body.completed : ToUpdate.completed;
 
         const index = task.tasks.findIndex(t => t._id.toString() === taskId);
         if (index === -1) return res.status(404).send('Task not found');
 
-        task.tasks[index] = {...req.body, _id: taskId}
+        console.log(4)
         await task.save();
-        const action =  task.tasks[index].completed? "completeTask" : "updateTask";
+
+        const action = ToUpdate.completed ? "completeTask" : "updateTask";
         user.tasks.push({
-        task_id: taskId,
-        actions:action,
-        })
+            task_id: taskId,
+            actions: action,
+        });
         await user.save();
 
-        res.send(task.tasks[index]);
+        res.send(ToUpdate);
     } catch (err) {
+        console.log(7)
         console.error(err.message);
         res.status(500).send('Server error');
     }
 });
+
 
 
 routes.delete('/:userid/:taskId', async (req, res) => {

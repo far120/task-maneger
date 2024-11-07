@@ -13,7 +13,8 @@ export default function Home() {
     const userid = userData?._id;
 
     const [tasks, settasks] = useState([]);
-    let check = false;
+    const [check, setCheck] = useState(false);
+ 
 
     useEffect(() => {
         if (userid) {
@@ -27,7 +28,7 @@ export default function Home() {
                     console.error(err)
                 );
         }
-    }, [userid , check]);
+    }, [userid ]);
 
 
 const handeldelete = (taskid) => {
@@ -36,11 +37,29 @@ const handeldelete = (taskid) => {
             const updatedTasks = tasks.filter(task => task._id !== taskid);
             settasks(updatedTasks);
             alert("Task deleted successfully");
-            check =!check;
+            setCheck(!check);
         })
         .catch((error) => {
             console.error("Error deleting task:", error);
             alert("Error deleting task");
+        });
+}
+
+const handleCompleteTask = (taskid) => {
+    const taskcomplete = tasks.find(task => task._id === taskid);
+    axios.put(`${BackEnd_url}/api/task/${userid}/${taskid}`, { completed : !taskcomplete.completed  })
+       .then((response) => {
+            const updatedTasks = tasks.map(task => 
+                task._id === taskid ? { ...task, completed: !taskcomplete.completed } : task
+            );
+            settasks(updatedTasks);
+            alert("Task marked as completed successfully");
+
+            setCheck(prevCheck => !prevCheck);
+        })
+       .catch((error) => {
+            console.error("Error marking task as completed:", error);
+            alert("Error marking task as completed");
         });
 }
 
@@ -63,23 +82,29 @@ const handeldelete = (taskid) => {
                           <div className="card-body">
                             <h5 className="card-title">{task.title}</h5>
                             <p className="card-text">{task.description}</p>
-                            <p className="text-muted">Due Date: {task.dueDate}</p>
+                            <p className="text-muted">Due Date: {task.dueDate ? new Date(task.dueDate).toISOString().substring(0, 10) : ''}</p>
                             <p className="task-status">
                               <strong>Status:</strong> {task.completed ? 'Completed' : 'Not Completed'}
                             </p>
                             {/* Button to mark task as completed */}
-                            {!task.completed && (
+                            {!task.completed ? (
                               <button
                                 className="btn btn-success"
-                                // onClick={() => handleCompleteTask(task._id)}
+                                onClick={() => handleCompleteTask(task._id)}
                               >
                                 Mark as Completed
                               </button>
+                            ):
+                            (
+                              <button
+                                className="btn btn-danger"
+                                onClick={() => handleCompleteTask(task._id)}
+                              > Mark as non Completed</button>
                             )}
                             {/* Button to delete task */}
                             <span style={{padding:"10px"}}><button className="btn px-2 " onClick={()=>handeldelete(task._id)}><i class="fa-solid fa-trash"></i></button></span>
                             {/* Button to edit task */}
-                            <button className="btn px-2"><i class="fa-sharp fa-solid fa-pen-to-square"></i></button>
+                            <Link to={`/updatetask/${userid}/${task._id}`}><button className="btn px-2"><i class="fa-sharp fa-solid fa-pen-to-square"></i></button></Link>
                           </div>
                         </div>
                       </div>
