@@ -31,9 +31,6 @@ const storage = multer.diskStorage({
     }
     cb(null, true);
   }
-
-
-  
   const upload = multer({ 
      storage ,
      fileFilter
@@ -71,43 +68,42 @@ routes.get('/:id', validationtoken , async (req, res) => {
         email: Joi.string().required().email().trim(),
         password: Joi.string().required().min(8).max(16).trim(), 
         role: Joi.string(),
-        avatar: Joi.string(), 
+        avatar: Joi.string(),  
       
     }) 
-    
     const { error } = schema.validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
+    if(error) return res.status(404).send(error.details[0].message );
 
     var user = await Authentications.findOne({ email: req.body.email})
     if(user) return res.status(400).send("User already exists");
 
+
      user = await Authentications.findOne({ name: req.body.name})
     if(user) return res.status(400).send("Username already exists");
 
-    
 
-    const newauthentication = new Authentications({
-        name: req.body.name,
-        email: req.body.email,
-        password : req.body.password,
-        role:req.body.role,
-        avatar: req.file.filename
-    })
+    try { 
+        const newauthentication = new Authentications({
+            name: req.body.name,
+            email: req.body.email,
+            password : req.body.password,
+            role:req.body.role,
+            avatar: req.file.filename
+        })
 
-
-    try {
-       
        const authentication = await newauthentication.save();
-        const token = jwt.sign({_id: authentication._id , role:authentication.role , avatar:authentication.avatar  }, process.env.TOKEN_SECRET, { expiresIn: '30d' });
+  
+        const token = jwt.sign({_id: authentication._id , role:authentication.role , avatar:authentication.avatar , name:authentication.name  }, process.env.TOKEN_SECRET, { expiresIn: '30d' });
         authentication.token = token;
         await authentication.save();
         const { password , ...other} = authentication._doc;
         res.send({...other })
 
-
+     
     }
     catch (error) {
         res.status(500).send(error.message);
+       
     }
 });
 
@@ -178,7 +174,7 @@ routes.post('/login', async (req, res) => {
     const validPassword = req.body.password === user.password || bcrypt.compareSync(req.body.password, user.password)
     if(!validPassword) return res.status(400).send("Invalid email or password");
 
-    const token = jwt.sign({_id: user._id , role:user.role ,  avatar:user.avatar  }, process.env.TOKEN_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({_id: user._id , role:user.role ,  avatar:user.avatar , name: user.name  }, process.env.TOKEN_SECRET, { expiresIn: '30d' });
     user.token = token;
     await user.save();
     

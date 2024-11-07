@@ -27,10 +27,10 @@ const Task = require('./routes/task');
 
 // middleware
 app.use(express.json());
+app.use(cors());  // for react api
 app.use('/api/authentication', Authentications);
 app.use('/api/task', Task);
 app.use('/images', express.static(path.join(__dirname,'images')))
-app.use(cors());  // for react api
 app.all('*', (req, res) => {
     res.status(404).send({ status: "error",  msg: "Not Found" });
 });
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 })
 
-port = process.env.PORT || 2004 ;
+port = process.env.PORT || 5202 ;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 

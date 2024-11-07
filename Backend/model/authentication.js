@@ -31,7 +31,7 @@ const authenticationscehme = new mongoose.Schema({
     },
     avatar:{
         type:String,
-        default: "uploads/download.png"
+        default: "images/avatar-1730901246029-351802418.jpeg"
   
     },
     tasks: [

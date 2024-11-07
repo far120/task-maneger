@@ -1,0 +1,76 @@
+Aside component styling
+.aside {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .aside-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .aside-header h4 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .aside-nav h5 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .aside-nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .aside-nav li {
+    margin: 10px 0;
+  }
+  
+  .aside-nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+  }
+  
+ 
+  
+  .aside-footer {
+    margin-top: auto;
+    text-align: center;
+  }
+  
+  .logout-btn,
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .logout-btn:hover,
+  .login-btn:hover {
+    background-color: #0056b3;
+  }
+
+  
