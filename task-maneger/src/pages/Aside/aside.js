@@ -46,6 +46,8 @@ export default function Aside() {
           <li><Link to="/">All Tasks</Link></li>
           <li><Link to="/completed">Completed</Link></li>
           <li><Link to="/today">Today</Link></li>
+          <li><Link to="/preday">prevDay</Link></li>
+          <li><Link to="/addtask">New Task</Link></li>
           <li><Link to="/profile">Myprofile</Link></li>
           { role === "adminserver" ?(
             <li><Link to="/auth">Auth</Link></li>

@@ -14,6 +14,17 @@ export default function Home() {
 
     const [tasks, settasks] = useState([]);
     const [check, setCheck] = useState(false);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || 'light'); 
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme); 
+    };
+    useEffect(() => {
+        document.body.className = theme; 
+    }, [theme]);
+
  
 
     useEffect(() => {
@@ -65,6 +76,7 @@ const handleCompleteTask = (taskid) => {
 
 
     return (
+<div style={{ backgroundColor: localStorage.getItem("theme") === 'light' ? '#f0f0f0' : '#333', minHeight: '100vh' }}>
         <div className="home-container">
             <div className="user-info">
             <Aside />
@@ -72,13 +84,14 @@ const handleCompleteTask = (taskid) => {
             <div className="content-container">
                 <h2>Your Tasks</h2>
                 <Link to="/addtask"><button style={{margin:"5px"}} className="btn add-btn">NewTask</button></Link>
+                <button className='btn ' onClick={()=>toggleTheme()}><i class="fa-solid fa-circle-half-stroke"></i></button>
                 {tasks.length === 0 ? (
                     <p className="error">loding......</p>
                 ) : (
                     <div className="task-list">
                     {tasks.map(task => (
                       <div key={task._id} className="task-item mb-3">
-                        <div className="card">
+                        <div className="card" style={{ backgroundColor: localStorage.getItem("theme") === 'light' ? '#f0f0f0' : '#333' }} >
                           <div className="card-body">
                             <h5 className="card-title">{task.title}</h5>
                             <p className="card-text">{task.description}</p>
@@ -112,6 +125,7 @@ const handleCompleteTask = (taskid) => {
                   </div>
                   
                 )}
+        </div>
         </div>
         </div>
     );

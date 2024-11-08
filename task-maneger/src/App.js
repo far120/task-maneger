@@ -14,8 +14,18 @@ import Profile from "./pages/userdata/profile";
 import Show from "./pages/userdata/show";
 import Update from "./pages/userdata/updates";
 import Dashboard from "./pages/userdata/dashboard";
+import { Mycontext } from "./pages/Auth/context";
+import { useContext } from "react";
 
 function App() {
+  const { value, setValue } = useContext(Mycontext);
+  if (!localStorage.getItem('token') && value !== "default value") {
+    localStorage.setItem('token', value);
+  }
+  
+  if (localStorage.getItem('token') && value === "default value") {
+    setValue(localStorage.getItem("token"));
+  }
   const data = useTokenDecoder();
     const role = data?.role;
   return (
