@@ -14,6 +14,8 @@ import Profile from "./pages/userdata/profile";
 import Show from "./pages/userdata/show";
 import Update from "./pages/userdata/updates";
 import Dashboard from "./pages/userdata/dashboard";
+import Prevday from "./pages/Home/prevday";
+import Nextday from "./pages/Home/nextday";
 import { Mycontext } from "./pages/Auth/context";
 import { useContext } from "react";
 
@@ -47,6 +49,8 @@ function App() {
       <Route path="/updatetask/:userid/:taskid" element={<UpdateTask />} />
       <Route path="/today" element={<Today />} />
       <Route path="/completed" element={<Completed />} />
+      <Route path="/prevday" element={<Prevday />} />
+      <Route path="/nextday" element={<Nextday />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/auth/:userid" element={<Show />} />
       <Route path="/updates/:userid" element={<Update />} />
