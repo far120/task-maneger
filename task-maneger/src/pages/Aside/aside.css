@@ -24,13 +24,13 @@ Aside component styling
   
   .aside-header h4 {
     font-size: 18px;
-    color: #333;
+    /* color: #333; */
     margin: 0;
   }
   
   .aside-nav h5 {
     font-size: 16px;
-    color: #555;
+    /* color: #555; */
     margin-bottom: 10px;
   }
   

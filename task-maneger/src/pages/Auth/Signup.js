@@ -50,7 +50,7 @@ export default function SignUp() {
     })
     .then(response => {
         alert('User Registration successful! Please login.')
-        navigate('/login');
+        navigate('/');
     })
     .catch(error => {
         console.error('Error:', error);
@@ -138,7 +138,7 @@ export default function SignUp() {
               <div className="text-center">
                 <input type="submit" value="Register" className="btn" />
               </div>
-              <p>if you have an account <Link to="/login">login</Link> </p>
+              <p>if you have an account <Link to="/">login</Link> </p>
             </form>
           </div>
         </div>

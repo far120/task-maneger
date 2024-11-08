@@ -75,7 +75,7 @@ export default function Update() {
         })
         .then(response => {
             alert('User updated successfully');
-            navigate('/');
+            navigate('/auth');
         })
         .catch(error => {
             console.error('Error updating user:', error);

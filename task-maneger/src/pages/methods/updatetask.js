@@ -40,7 +40,7 @@ export default function UpdateTask() {
         })
         .then(response => {
             alert('Task updated successfully!');
-            navigate('/');  
+            navigate('/alltasks');  
         })
         .catch(error => {
             console.error('Error:', error);

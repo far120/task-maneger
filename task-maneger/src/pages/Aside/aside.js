@@ -27,7 +27,7 @@ export default function Aside() {
     console.log(1)
     localStorage.removeItem('token');
     setValue("default value");
-    navigate('/login');
+    navigate('/');
   }
   
   return (
@@ -43,8 +43,9 @@ export default function Aside() {
       <div className="aside-nav">
         <h5>Tasks</h5>
         <ul>
-          <li><Link to="/">All Tasks</Link></li>
+          <li><Link to="/alltasks">All Tasks</Link></li>
           <li><Link to="/completed">Completed</Link></li>
+          <li><Link to="/notcompleted">NotCompleted</Link></li>
           <li><Link to="/prevday">prevDays</Link></li>
           <li><Link to="/today">Today</Link></li>
           <li><Link to="/nextday">nextDays</Link></li>

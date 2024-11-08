@@ -29,7 +29,7 @@ export default function Login() {
         .then((response) => {
         localStorage.setItem('token', response.data.token);
           setValue(response.data.token);
-            navigate('/'); 
+            navigate('/alltasks'); 
         })
         .catch((error) => {
             alert(error.response.data)

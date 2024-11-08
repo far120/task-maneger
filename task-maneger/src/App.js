@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./pages/Auth/Signup"
 import Login from "./pages/Auth/login"
-import Home from "./pages/Home/home";
+import Alltasks from "./pages/Home/alltasks";
 import Completed from "./pages/Home/completed";
+import NotCompleted from "./pages/Home/notcompleted";
 import Today from "./pages/Home/today";
 import Addtask from "./pages/methods/addtask";
 import UpdateTask from "./pages/methods/updatetask";
@@ -35,7 +36,7 @@ function App() {
     <>
     <Routes>
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       { window.localStorage.getItem("token") ?(
         <>
         {window.localStorage.getItem("token") && role ==="adminserver" ?(
@@ -44,21 +45,23 @@ function App() {
         (
           null
         )  }
-      <Route path="/" element={<Home />} />
+      <Route path="/alltasks" element={<Alltasks />} />
       <Route path="/addtask" element={<Addtask />} />
       <Route path="/updatetask/:userid/:taskid" element={<UpdateTask />} />
       <Route path="/today" element={<Today />} />
       <Route path="/completed" element={<Completed />} />
+      <Route path="/notcompleted" element={<NotCompleted />} />
       <Route path="/prevday" element={<Prevday />} />
       <Route path="/nextday" element={<Nextday />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/auth/:userid" element={<Show />} />
       <Route path="/updates/:userid" element={<Update />} />
       <Route path="/dashboard/:id" element={<Dashboard />} />
+      <Route path="*" element={<NotFound />} />
       </>
       ):(
         <>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         </>
       )

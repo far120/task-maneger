@@ -28,7 +28,7 @@ export default function Addtask() {
         })
         .then(response => {
             alert('Task added successfully!');
-            navigate('/');  
+            navigate('/alltasks');  
         })
         .catch(error => {
             console.error('Error:', error);

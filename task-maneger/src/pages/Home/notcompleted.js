@@ -90,6 +90,9 @@ const handleCompleteTask = (taskid) => {
                 ) : (
                     <div className="task-list">
                     {tasks.map(task => (
+                         task.completed ? (
+                            null)
+                            :(
                       <div key={task._id} className="task-item mb-3">
                         <div className="card" style={{ backgroundColor: localStorage.getItem("theme") === 'light' ? '#f0f0f0' : '#333' }} >
                           <div className="card-body">
@@ -121,6 +124,7 @@ const handleCompleteTask = (taskid) => {
                           </div>
                         </div>
                       </div>
+                            )
                     ))}
                   </div>
                   
