@@ -10,7 +10,7 @@ const taskschema =  new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true,
+        // unique: true,
         minlength: 1,
         maxlength: 50
     },
