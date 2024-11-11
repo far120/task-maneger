@@ -10,8 +10,6 @@ password = 123456789
 if you want create adminserver 
 email = name@adminserver.com
 
-
-
 // instruction of	React\\
 npx create-react-app name  
 npm install react-router-dom
