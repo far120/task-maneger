@@ -18,6 +18,20 @@ npm install jsonwebtoken
  run ===>>> npm start  
 
 
+Acount of user ===>>>> 
+email = user@user.com
+password = 123456789
+
+
+Acount of adminserver ===>>>> 
+email = adminserver@adminserver.com
+password = 123456789
+
+if you want create adminserver 
+email = name@adminserver.com
+
+
+
 ////Descriepsion\\\\
 Authentication (Backend):
 User and AdminServer Roles:
