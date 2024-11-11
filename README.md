@@ -1,3 +1,17 @@
+Acount of user ===>>>> 
+email = user@user.com
+password = 123456789
+
+
+Acount of adminserver ===>>>> 
+email = adminserver@adminserver.com
+password = 123456789
+
+if you want create adminserver 
+email = name@adminserver.com
+
+
+
 // instruction of	React\\
 npx create-react-app name  
 npm install react-router-dom
@@ -18,17 +32,6 @@ npm install jsonwebtoken
  run ===>>> npm start  
 
 
-Acount of user ===>>>> 
-email = user@user.com
-password = 123456789
-
-
-Acount of adminserver ===>>>> 
-email = adminserver@adminserver.com
-password = 123456789
-
-if you want create adminserver 
-email = name@adminserver.com
 
 
 
